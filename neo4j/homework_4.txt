@@ -1,0 +1,232 @@
+Tomer Zwi
+tz2247
+
+Homework 4:
+
+
+I choose:
+
+TV show: Friends: 
+
+Creae nodes:
+
+CREATE (n:Person { name: 'Joey'});
+CREATE (n:Person { name: 'Jack'});
+CREATE (n:Person { name: 'Chandler'});
+CREATE (n:Person { name: 'Rachel'});
+CREATE (n:Person { name: 'Ross'});
+CREATE (n:Person { name: 'Judy'});
+CREATE (n:Person { name: 'Phoebe'});
+CREATE (n:Person { name: 'Monica'});
+
+Create realtionship:
+
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Rachel' AND b.name = 'Monica'
+CREATE (a)-[r:Friends_OF]->(b) 
+RETURN type(r);
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Monica' AND b.name = 'Rachel'
+CREATE (a)-[r:Friends_OF]->(b) 
+RETURN type(r);
+
+——
+
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Phoebe' AND b.name = 'Rachel'
+CREATE (a)-[r:Roomates_with]->(b) 
+RETURN type(r);
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Rachel' AND b.name = 'Phoebe'
+CREATE (a)-[r:Roomates_with]->(b) 
+RETURN type(r);
+
+
+——
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Monica' AND b.name = 'Ross'
+CREATE (a)-[r:Sister_of]->(b) 
+RETURN type(r);
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Ross' AND b.name = 'Monica'
+CREATE (a)-[r:Brother_of]->(b) 
+RETURN type(r);
+
+
+———
+
+Relation with properties: 
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Phoebe' AND b.name = 'Chandler'
+CREATE (a)-[r:Dislikes {at: 'Session 4'}]->(b) 
+RETURN type(r);
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Chandler' AND b.name = 'Phoebe'
+CREATE (a)-[r:Dislikes {at: 'Session 4'}]->(b) 
+RETURN type(r),r.at;
+
+——
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Joey' AND b.name = 'Rachel'
+CREATE (a)-[r: Roomates_with {at: 'Session 5'}]->(b) 
+RETURN type(r),r.at;
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Rachel' AND b.name = 'Joey'
+CREATE (a)-[r:Roomates_with {at: 'Session 5'}]->(b) 
+RETURN type(r),r.at;
+
+
+——
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Joey' AND b.name = 'Rachel'
+CREATE (a)-[r:Loves {at: 'Session 8'}]->(b) 
+RETURN type(r),r.at;
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Rachel' AND b.name = 'Joey'
+CREATE (a)-[r:Loves {at: 'Session 8'}]->(b) 
+RETURN type(r),r.at;
+
+——
+
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Rachel' AND b.name = 'Ross'
+CREATE (a)-[r:Married_to {at: 'Sessions 3-4'}]->(b) 
+RETURN type(r),r.at;
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Ross' AND b.name = 'Rachel'
+CREATE (a)-[r:Married_to {at: 'Sessions 3-4'}]->(b) 
+RETURN type(r),r.at;
+
+
+— 
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Monica' AND b.name = 'Chandler'
+CREATE (a)-[r:Secretly_relation_with {at: 'Sessions 6-7'}]->(b) 
+RETURN type(r),r.at;
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Chandler' AND b.name = 'Monica'
+CREATE (a)-[r: Secretly_relation_with {at: 'Sessions 6-7'}]->(b) 
+RETURN type(r),r.at;
+
+——
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Joey' AND b.name = 'Chandler'
+CREATE (a)-[r: Roomates_with {at: 'Sessions 1-4'}]->(b) 
+RETURN type(r),r.at;
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Chandler' AND b.name = 'Joey'
+CREATE (a)-[r: Roomates_with {at: 'Sessions 1-4'}]->(b) 
+RETURN type(r),r.at;
+
+——
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Jack' AND b.name = 'Ross'
+CREATE (a)-[r:Father_of]->(b) 
+RETURN type(r);
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Ross' AND b.name = 'Jack'
+CREATE (a)-[r:Son_of]->(b) 
+RETURN type(r);
+
+——
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Judy' AND b.name = 'Ross'
+CREATE (a)-[r:Mother_of]->(b) 
+RETURN type(r);
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Ross' AND b.name = 'Judy'
+CREATE (a)-[r:Son_of]->(b) 
+RETURN type(r);
+
+—
+
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Monica' AND b.name = 'Judy'
+CREATE (a)-[r:Daughter_of]->(b) 
+RETURN type(r);
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Judy' AND b.name = 'Monica'
+CREATE (a)-[r:Mother_of]->(b) 
+RETURN type(r);
+
+——
+
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Jack' AND b.name = 'Monica'
+CREATE (a)-[r:Father_of]->(b) 
+RETURN type(r);
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Monica' AND b.name = 'Jack'
+CREATE (a)-[r: Daughter_of]->(b) 
+RETURN type(r);
+
+——
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Chandler' AND b.name = 'Ross'
+CREATE (a)-[r: Friends_of]->(b) 
+RETURN type(r);
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Ross' AND b.name = 'Chandler'
+CREATE (a)-[r: Friends_of]->(b) 
+RETURN type(r);
+
+
+———
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Jack' AND b.name = 'Judy'
+CREATE (a)-[r: Married_to]->(b) 
+RETURN type(r);
+
+MATCH (a:Person),(b:Person)
+WHERE a.name = 'Judy' AND b.name = 'Jack'
+CREATE (a)-[r: Married_to]->(b) 
+RETURN type(r);
+
+
+—— 
+
+Part c: 
+
+Two subgraph queries: 
+
+
+MATCH (a)-[r]->(b)
+WHERE a.name='Ross'
+RETURN a.name, type(r), b.name;
+
+
+
+MATCH (a)-[r]->(b)
+WHERE type(r)="Roomates_with"
+RETURN a.name, type(r), b.name;
+
+
+
